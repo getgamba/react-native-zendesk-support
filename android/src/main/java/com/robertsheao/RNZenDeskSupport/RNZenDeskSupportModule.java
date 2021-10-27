@@ -58,6 +58,7 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
     String zendeskUrl = config.getString("zendeskUrl");
     String clientId = config.getString("clientId");
     Zendesk.INSTANCE.init(getReactApplicationContext(), zendeskUrl, appId, clientId);
+    Support.INSTANCE.init(Zendesk.INSTANCE);
   }
 
   @ReactMethod
@@ -142,7 +143,6 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
 
     if(activity != null){
       Intent requestActivityIntent = RequestActivity.builder()
-              .withRequestSubject("Android ticket")
               .withCustomFields(fields)
               .intent(activity);
       requestActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
