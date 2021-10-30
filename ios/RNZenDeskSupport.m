@@ -12,8 +12,10 @@
 #endif
 
 #import "RNZenDeskSupport.h"
+#import <SupportSDK/SupportSDK.h>
+#import <ZendeskCoreSDK/ZendeskCoreSDK.h>
+#import <SupportProvidersSDK/SupportProvidersSDK.h>
 
-@import SupportSDK
 @implementation RNZenDeskSupport
 
 RCT_EXPORT_MODULE();
@@ -23,7 +25,7 @@ RCT_EXPORT_METHOD(initialize:(NSDictionary *)config){
     NSString *zendeskUrl = [RCTConvert NSString:config[@"zendeskUrl"]];
     NSString *clientId = [RCTConvert NSString:config[@"clientId"]];
     
-    [ZDKZendesk initializeWithAppId:appId clientId:clientId zendeskUrl:url];
+    [ZDKZendesk initializeWithAppId:appId clientId:clientId zendeskUrl:zendeskUrl];
     [ZDKSupport initializeWithZendesk:[ZDKZendesk instance]];
 }
 
@@ -121,12 +123,12 @@ RCT_EXPORT_METHOD(callSupport:(NSDictionary *)customFields) {
         NSMutableArray *fields = [[NSMutableArray alloc] init];
         for (NSString* key in customFields) {
             id value = [customFields objectForKey:key];
-            [fields addObject: [[ZDKCustomField alloc] initWithFieldId:@(key.integerValue) andValue:value]];
+            [fields addObject: [[ZDKCustomField alloc] initWithFieldId:@(key.integerValue) value:value]];
         }
         ZDKRequestUiConfiguration * config = [ZDKRequestUiConfiguration new];
-        config.customFields = fields
+        config.customFields = fields;
         UIViewController *requestController = [ZDKRequestUi buildRequestListWith:@[config]];
-        [self.navigationController pushViewController:requestController animated:YES];
+        [vc presentViewController:requestController animated:YES completion:nil];
     });
 }
 
