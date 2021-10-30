@@ -14,8 +14,8 @@ Pod::Spec.new do |s|
   s.source_files   = 'ios/RNZenDeskSupport.{h,m}'
 
   s.platform = :ios, "8.0"
-
-  s.dependency "zendesk/support_sdk_ios" ~> 5.3.0
+  s.dependency 'ZendeskSupportSDK'
+  s.dependency 'ZendeskSupportProvidersSDK'
   s.dependency 'React'
   s.ios.xcconfig = {
     'FRAMEWORK_SEARCH_PATHS' => '"${PODS_ROOT}/ZendeskSDK"',
