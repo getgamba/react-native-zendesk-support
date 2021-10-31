@@ -18,8 +18,8 @@ Pod::Spec.new do |s|
   s.dependency 'ZendeskSupportProvidersSDK'
   s.dependency 'React'
   s.ios.xcconfig = {
-    'FRAMEWORK_SEARCH_PATHS' => '"${PODS_ROOT}/ZendeskSDK"',
-    'OTHER_LDFLAGS' => '-framework ZendeskSDK'
+    'FRAMEWORK_SEARCH_PATHS' => '"${PODS_ROOT}/ZendeskSupportSDK"',
+    'OTHER_LDFLAGS' => '-framework ZendeskSupportSDK'
   }
   s.user_target_xcconfig = { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES' }
 
