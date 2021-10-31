@@ -127,7 +127,7 @@ RCT_EXPORT_METHOD(callSupport:(NSDictionary *)customFields) {
         }
         ZDKRequestUiConfiguration * config = [ZDKRequestUiConfiguration new];
         config.customFields = fields;
-        UIViewController *requestController = [ZDKRequestUi buildRequestListWith:@[config]];
+        UIViewController *requestController = [ZDKRequestUi buildRequestUiWith:@[config]];
         [vc presentViewController:requestController animated:YES completion:nil];
     });
 }
