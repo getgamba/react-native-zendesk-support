@@ -119,7 +119,7 @@ RCT_EXPORT_METHOD(setupIdentity:(NSDictionary *)identity){
 RCT_EXPORT_METHOD(callSupport:(NSDictionary *)customFields) {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIWindow *window=[UIApplication sharedApplication].keyWindow;
-        UIViewController *vc = [window rootViewController];
+        UINavigationController *vc = [window rootViewController];
         NSMutableArray *fields = [[NSMutableArray alloc] init];
         for (NSString* key in customFields) {
             id value = [customFields objectForKey:key];
@@ -128,7 +128,7 @@ RCT_EXPORT_METHOD(callSupport:(NSDictionary *)customFields) {
         ZDKRequestUiConfiguration * config = [ZDKRequestUiConfiguration new];
         config.customFields = fields;
         UIViewController *requestController = [ZDKRequestUi buildRequestUiWith:@[config]];
-        [vc presentViewController:requestController animated:YES completion:nil];
+        [vc pushViewController:requestController animated:YES];
     });
 }
 
