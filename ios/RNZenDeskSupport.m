@@ -129,7 +129,7 @@ RCT_EXPORT_METHOD(callSupport:(NSDictionary *)customFields) {
         UIViewController *requestController = [ZDKRequestUi buildRequestUiWith:@[config]];
         
         UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:requestController];
-        window.rootViewController = navController;
+        [window.rootViewController presentViewController:navController animated:YES completion:nil];
     });
 }
 
