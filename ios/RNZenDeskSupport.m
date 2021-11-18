@@ -55,6 +55,7 @@ RCT_EXPORT_METHOD(callSupport:(NSDictionary *)customFields) {
         UIViewController *requestController = [ZDKRequestUi buildRequestUiWith:@[config]];
         
         UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:requestController];
+        navController.modalPresentationStyle = UIModalPresentationFullScreen;
         [window.rootViewController presentViewController:navController animated:YES completion:nil];
     });
 }
