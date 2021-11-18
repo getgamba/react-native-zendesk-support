@@ -27,6 +27,9 @@ RCT_EXPORT_METHOD(initialize:(NSDictionary *)config){
     
     [ZDKZendesk initializeWithAppId:appId clientId:clientId zendeskUrl:zendeskUrl];
     [ZDKSupport initializeWithZendesk:[ZDKZendesk instance]];
+
+    id<ZDKObjCIdentity> userIdentity = [[ZDKObjCAnonymous alloc] initWithName:nil email:nil];
+    [[ZDKZendesk instance] setIdentity:userIdentity];
 }
 
 RCT_EXPORT_METHOD(setupIdentity:(NSDictionary *)identity){

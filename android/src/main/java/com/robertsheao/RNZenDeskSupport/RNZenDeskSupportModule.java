@@ -50,6 +50,9 @@ public class RNZenDeskSupportModule extends ReactContextBaseJavaModule {
     String clientId = config.getString("clientId");
     Zendesk.INSTANCE.init(getReactApplicationContext(), zendeskUrl, appId, clientId);
     Support.INSTANCE.init(Zendesk.INSTANCE);
+
+    AnonymousIdentity.Builder builder = new AnonymousIdentity.Builder();
+    Zendesk.INSTANCE.setIdentity(builder.build());
   }
 
   @ReactMethod
